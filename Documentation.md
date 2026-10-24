@@ -6,12 +6,12 @@
 - Document version: 0.1.0
 - Last updated: 2026-10-24
 - Last verified: 2026-10-24 (Node 26.12.1 build/tests/audit and browser request checks on Windows; Linux/remote CI pending)
-- Current branch or revision: unavailable; this workspace is not a Git repository
+- Current branch or revision: `main`; repository status was clean before this documentation task
 - Status: partially verified
 
 ## 2. Project Overview
 
-The project provides a small HTTP backend and a same-origin API testing playground. Warehouse workflows, user roles, data rules, and non-health API contracts remain unknown and intentionally are not invented.
+The project provides a small HTTP backend and a same-origin API testing playground. Provisional warehouse assessment and survey-planning documents are now available under `docs/warehouse/`; no physical site facts, inventory workflows, warehouse domain API, database schema, or stock operations have been verified or implemented. Warehouse workflows, user roles, and data rules remain unknown and intentionally are not invented.
 
 ## 3. Technology Stack
 
@@ -52,6 +52,7 @@ flowchart LR
 - `src/App.tsx`, `src/apiClient.ts`, `src/styles.css`: UI, centralized request execution, and design system.
 - `test/app.test.js`, `src/*.test.*`: backend, frontend, and request-client tests.
 - `index.html`, `vite.config.ts`, `tsconfig.json`: frontend entry and tool configuration.
+- `docs/warehouse/`: provisional assessment, survey template, conceptual flow, location coding proposal, pilot SOP, implementation plan, KPI measurement plan, and safety prompts. These are not approved operating instructions or a measured site plan.
 - `skills/`: project-specific workflow instructions; automatic discovery is tool-dependent.
 - `docs/architecture/PROJECT_MAP.md`: concise component and dependency map.
 - `.github/workflows/ci.yml`: Windows/Linux CI definition.
@@ -62,6 +63,7 @@ flowchart LR
 | --- | --- | --- | --- |
 | HTTP baseline | `GET /health` returns `200` and `{"status":"ok"}`; other paths return `404`; non-GET requests return `405` with `Allow: GET` | Node built-ins only; no stored data | `test/app.test.js`; implemented |
 | API Playground | Overview, source-verified explorer/docs, same-origin request builder, transient bearer header, measured response viewer, memory-only history, health assertion suite | Same-origin browser fetch; browser token remains in React state only | `src/App.test.tsx`, `src/apiClient.test.ts`; implemented, visual browser review pending |
+| Warehouse planning documentation | Evidence-based initial assessment and field survey templates; provisional coding/layout/process proposals; implementation, KPI and safety planning | Repository inspection only; no warehouse/site inputs; no inventory data | `docs/warehouse/*.md`; planning only, no site survey or operational implementation |
 | Warehouse domain | Not defined | Unknown | Not implemented; requires user requirements |
 
 ## 7. API Reference
@@ -143,6 +145,15 @@ Runtime packages: React, React DOM, Lucide React, and local Fontsource font fami
 - `skills/api-testing/SKILL.md`: API request and assertion workflows.
 - `skills/ui-ux-accessibility/SKILL.md`: interaction and accessibility requirements.
 - `skills/frontend-security/SKILL.md`: browser credential and destination restrictions.
+- `docs/warehouse/WAREHOUSE_ASSESSMENT.md`: verified project evidence, unknown site facts, survey priorities and risk register.
+- `docs/warehouse/FIELD_SURVEY_TEMPLATE.md`: fillable measurement, flow, inventory sample, interview, and sign-off forms.
+- `docs/warehouse/WAREHOUSE_LAYOUT.md`: non-scaled process concept and post-survey map gates.
+- `docs/warehouse/LOCATION_CODING_STANDARD.md`: provisional code patterns and empty location register template.
+- `docs/warehouse/location_register_template.csv`: header-only CSV for verified survey results; no sample locations are populated.
+- `docs/warehouse/WAREHOUSE_PILOT_SOP.md`: draft receiving, putaway, transfer, issue, count, exception and handover controls; not authorized for use.
+- `docs/warehouse/IMPLEMENTATION_PLAN.md`: staged survey/pilot/digitalization, cost worksheet, migration, and stop/rollback gates.
+- `docs/warehouse/KPI_BASELINE.md`: KPI definitions and measurement plan; all baselines remain unmeasured.
+- `docs/warehouse/SAFETY_RISK_REGISTER.md`: initial hazard screening prompts; not a site risk assessment.
 
 Tools do not necessarily discover the `skills/` directory automatically; `AGENTS.md` links the workflow expectation without claiming platform-specific auto-loading.
 
@@ -159,6 +170,7 @@ Tools do not necessarily discover the `skills/` directory automatically; `AGENTS
 ## 19. Known Issues and Technical Debt
 
 - Business scope, warehouse entities, workflows, roles, and API contracts are undefined.
+- Warehouse planning artifacts are provisional and based only on repository evidence; no warehouse drawing/photo/inventory/process file was present in the inspected workspace. No physical survey, capacity estimate, location assignment, cost quote, or implementation has occurred.
 - The development UI proxies API paths to the fixed backend at `127.0.0.1:3000`; the proxy is a development convenience, not an environment allowlist or production service.
 - Browser bearer field is a generic testing control, not evidence of backend authentication support; credentials remain accessible to scripts on the UI origin until cleared or the page is closed.
 - No custom/staging/production environments, OAuth, API key/basic/cookie auth, saved suites, history export, or persisted history are available.
@@ -167,7 +179,7 @@ Tools do not necessarily discover the `skills/` directory automatically; `AGENTS
 - The default shell runtime is Node 24, but target Node 26.12.1 is available through fnm and was used for verification.
 - Windows/Linux CI is configured, not yet remotely verified.
 - No database, authentication, authorization, TLS/deployment configuration, structured request logging, rate limiting, or readiness check exists.
-- Git is not initialized in this workspace, so branch and revision cannot be recorded.
+- Git branch is `main`; no commit/revision is included in this document update.
 
 ## 20. Change Log
 
@@ -175,3 +187,4 @@ Tools do not necessarily discover the `skills/` directory automatically; `AGENTS
 | --- | --- | --- |
 | 2026-10-24 | Added minimal Node HTTP baseline, health route, tests, CI matrix, agent guidance, skills, and project map | `npm test` and `npm audit --audit-level=high` on Windows with Node 26.12.1; remote CI and Linux remain unverified |
 | 2026-10-24 | Added same-origin React API playground, bounded static serving, frontend tests, local fonts, and build CI gate | `npm ci`, `npm test`, `npm run build`, and `npm audit --audit-level=high` on Windows with Node 26.12.1; browser verified health 200, manual unknown-route 404, dark mode, and mobile width without horizontal overflow; Linux and remote CI remain unverified |
+| 2026-10-24 | Added provisional warehouse assessment, field survey and planning documents; no backend/domain implementation | Repository/document inspection only; no site survey or physical changes performed |

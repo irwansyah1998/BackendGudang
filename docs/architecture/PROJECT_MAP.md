@@ -13,6 +13,7 @@ flowchart LR
   Server --> HttpApp[src/httpApp.js]
   HttpApp --> Health[GET /health]
   HttpApp --> Static[dist assets allowlist]
+  WarehouseDocs[docs/warehouse planning only]
   Tests[test/ and src/*.test.*] --> UI
   Tests --> HttpApp
   CI[.github/workflows/ci.yml] --> Tests
@@ -28,6 +29,8 @@ flowchart LR
 | CI | `.github/workflows/ci.yml` | Install, test, build, and audit on Windows and Linux | Configured; remote result not observed |
 | Project guidance | `AGENTS.md`, `skills/` | Agent workflow and review checks | Implemented; discoverability depends on agent tooling |
 | Main documentation | `Documentation.md` | Verified state, setup, risks, and decisions | Partially verified |
+| Warehouse planning docs | `docs/warehouse/*.md` | Provisional evidence assessment, survey templates, conceptual flow, draft SOP, pilot/migration/KPI/safety plan | Documentation only; no site data, approved layout, warehouse code, or operational authority |
+| Survey data template | `docs/warehouse/location_register_template.csv` | Header-only location register for future verified survey data | No location rows populated |
 
 ## Dependencies and data flow
 
@@ -35,4 +38,5 @@ flowchart LR
 - Build/test dependencies: Vite, TypeScript, Vitest, jsdom, Testing Library, and vitest-axe.
 - UI uses same-origin `fetch`; backend serves production files from `dist` using an explicit path allowlist and restrictive CSP.
 - No database, external service, background job, backend auth policy, or authorization rules exist. Browser bearer value is transient and never persisted.
+- No warehouse API, inventory/location schema, warehouse UI, field survey data, measured layout, stock import, or physical change exists. Planning docs distinguish unknowns and require owner/safety approval before operational use.
 - Configuration comes from `HOST` and `PORT`; the backend binds to loopback by default.
